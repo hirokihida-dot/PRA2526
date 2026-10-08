@@ -23,15 +23,15 @@ class ListArray : public List<T> {
                 arr[i] = arr[i-1]; // movemos el elemento que tenemos detras a esta posicion
             arr[pos] = e; // insertamos elemento e en posicion pos
             n++; // aumentamos en uno el tamanyo
-	    };
+	    }
 	    
         	void append(T e) override{
             insert(n, e);   // insertamos el elemento e en la ultima posicion del array
-        };
+        }
         
 		void preprend(T e) override{
 	        insert(0, e); // insertamos el elemento e en la primera posicion del array
-	    };
+	    }
 	    
 		T remove (int pos) override{
 	        if (pos < 0 || pos >= n)  // comprobamos si la posicion esta fuera del rango
@@ -44,43 +44,43 @@ class ListArray : public List<T> {
                 resize (max/2); // reajustamos el tamanyo
             return element;
 	    
-	    };
+	    }
 	    
 		T get (int pos) override{
 	        if (pos < 0 || pos >= n)  // comprobamos si la posicion esta fuera del rango
                 throw std::out_of_range("Posicion fuera de rango"); // lanzamos la excepcion fuera de rango
             return arr[pos]; // devuelve el elemento en las posicion pos
-	    };
+	    }
 	        
 		int search(T e) override{
             for (int i = 0; i < n; i++) // recorre todo el vector
 	            if (arr[i] == e) // comprueba si el elemento actual corresponde con el elemento e
 	                return i; // devuelve la posicion donde esta el elemento e
 	        return -1; // devuelve un -1 si no encuentr anada
-    	};
+    	}
 		
 		bool empty() override{
 	        return n == 0; // devuelve true si esta vacia y false si hay algun elemento
-	    };
-	    
+	    }
+	
 		int size() override{
 	        return n; // devuelve la cantidad de elementos de la lista
-	    };
+	    }
 	    
 			        
         ListArray(){
             arr = new T[MINSIZE];  // reservamos memoria
             max = MINSIZE;  // definimos el tamanyo maximo como el tamanyo minio
             n = 0; // inciailizamos la cantidad de elementos del array a 0
-        };
+        }
         
         ~ListArray() override{
             delete[] arr; // liberamos memoria 
-        };
+        }
         
         T operator[](int pos){
             get(pos); // devuelve el elemento en la posicion pos
-        };
+        }
         
         friend std::ostream& operator<<(std::ostream &out, ListArray<T> &list){
             out << "["; // imprimimos el corchete de apertura
@@ -88,7 +88,7 @@ class ListArray : public List<T> {
                 out << list.arr[i] << ",";  // imprime todos los elementos del array
             out << "]"; // imprimimos el corchete de cierre
             return out; // devuelve el flujo de salida
-        };
+        }
         
         void resize(int new_size){
             T* new_arr = new T[new_size]; // Creamos un nuevo array dinamico de new_size elementos
@@ -100,5 +100,5 @@ class ListArray : public List<T> {
             arr = new_arr; // hacemos que arr apunte al nuevo array
             max = new_size; // actualizamos el tamanyo maximo 
              
-        };
+        }
 };
