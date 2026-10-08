@@ -19,7 +19,7 @@ class ListLinked : public List<T> {
     public:
 
         // metodos publicos heredados de List.h
-		void insert (int pos, T e){
+		void insert (int pos, T e) override{
             if (pos < 0 || pos > n) // comprobamos si la posicion esta fuera del rango
                 throw std::out_of_range("Posicion fuera de rango"); // lanzamos la excepcion fuera de rango 
             if (pos == 0){ // si la posicion es 0, insertamos al principio
@@ -31,15 +31,15 @@ class ListLinked : public List<T> {
             n++; // aumentamos el numero de elementos en la lista
         }
 
-		void append(T e){
+		void append(T e) override{
             insert(n, e); // insertamos el elemento e al final de la lista
         }
 
-		void preprend(T e){
+		void preprend(T e) override{
             insert(0, e); // insertamos el elemento e al principio de la lista
         }
 
-		T remove (int pos){
+		T remove (int pos) override{
             if (pos < 0 || pos >= n) // comprobamos si la posicion esta fuera del rango
                 throw std::out_of_range("Posicion fuera de rango"); // lanzamos la excepcion fuera de rango 
             Node<T>* to_delete; // puntero al nodo que vamos a eliminar
@@ -58,13 +58,13 @@ class ListLinked : public List<T> {
             return element; // devolvemos el elemento eliminado
         }
 
-		T get (int pos){
+		T get (int pos) override{
             if (pos < 0 || pos >= n) // comprobamos si la posicion estña fuera de rango
                 throw std::out_of_range("Posicion fuera de rango"); // lanzamos la excepcion fuera de rango
             return node_at(pos)->data; // devolvemos el dato del nodo en la posicion pos
         }
 
-		int search(T e){
+		int search(T e) override{
             Node<T>* curr = first; // puntero auxiliar para recorrer la lista
             int index = 0; // indice del nodo actual
             while (curr != nullptr){ // mientras no lleguemos al final de la lista
@@ -77,11 +77,11 @@ class ListLinked : public List<T> {
            
         }
 
-    	bool empty(){
+    	bool empty() override{
             return n == 0; // devolvemos true si la lista esta vacia, false en caso contrario
         }
 
-		int size(){
+		int size() override{
             return n; // devolvemos el numero de elementos en la lista
         }
 
@@ -93,7 +93,7 @@ class ListLinked : public List<T> {
             n = 0;  // la cantidad de nodos es 0
         };
 
-        ~ListLinked(){
+        ~ListLinked() override{
             while(first != nullptr){ // bucle para repetir mientras el primer nodo no este vacio
                 Node<T>* aux = first->next; // generamos un puntero auxiliar apuntando a donde apunta first
                 delete first; // eliminamos first
