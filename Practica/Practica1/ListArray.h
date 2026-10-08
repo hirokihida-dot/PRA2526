@@ -79,9 +79,7 @@ class ListArray : public List<T> {
         };
         
         T operator[](int pos){
-            if (pos < 0 || pos >= n)  // comprobamos si la posicion esta fuera del rango
-                throw std::out_of_range("Posicion fuera de rango"); // lanzamos la excepcion fuera de rango
-            return arr[pos]; // si no esta fuera del rango, devuelve el elemento en la posicion
+            get(pos); // devuelve el elemento en la posicion pos
         };
         
         friend std::ostream& operator<<(std::ostream &out, ListArray<T> &list){
