@@ -25,7 +25,7 @@ class ListLinked : public List<T> {
             if (pos == 0){ // si la posicion es 0, insertamos al principio
                 first = new Node<T>(e, first); // creamos un nuevo nodo con el elemento e y apuntando al primer nodo
             } else { // si la posicion es mayor que 0, insertamos en medio 
-                Node<T>* prev = node_at(pos-1); // obtenemos el nodo anterior a la posicion donde queremos insertar
+                Node<T>* prev = first(pos-1); // obtenemos el nodo anterior a la posicion donde queremos insertar
                 prev->next = new Node<T>(e, prev->next); // creamos un nuevo nodo con el elemento e y apuntando al siguiente nodo del anterior
             }
             n++; // aumentamos el numero de elementos en la lista
@@ -48,7 +48,7 @@ class ListLinked : public List<T> {
                 to_delete = first; // apuntamos al primer nodo
                 first = first->next; // movemos el puntero first al siguiente nodo
             } else { // si la posicion es mayor que 0, eliminamos un nodo en medio
-                Node<T>* prev = node_at(pos-1); // obtenemos el nodo anterior al que queremos eliminar
+                Node<T>* prev = first(pos-1); // obtenemos el nodo anterior al que queremos eliminar
                 to_delete = prev->next; // apuntamos al nodo que vamos a eliminar
                 prev->next = to_delete->next; // enlazamos el nodo anterior con el siguiente del nodo a eliminar
             }
@@ -61,7 +61,7 @@ class ListLinked : public List<T> {
 		T get (int pos) override{
             if (pos < 0 || pos >= n) // comprobamos si la posicion estña fuera de rango
                 throw std::out_of_range("Posicion fuera de rango"); // lanzamos la excepcion fuera de rango
-            return node_at(pos)->data; // devolvemos el dato del nodo en la posicion pos
+            return firts(pos)->data; // devolvemos el dato del nodo en la posicion pos
         }
 
 		int search(T e) override{
